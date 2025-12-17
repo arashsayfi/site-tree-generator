@@ -21,9 +21,11 @@ generate_pdf(excel_path, output)
 
 files.download(output)
 print("✅ Done")
+python```
 
-Local / CLI usage
+## Local / CLI usage
 
+```python
 pip install git+https://github.com/arashsayfi/site-tree-generator.git
 site-tree --input breadcrumbs.xlsx --output site_tree.pdf
 
