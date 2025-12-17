@@ -11,26 +11,29 @@ def main():
     # If input not provided, try Colab upload
     if not args.input:
         try:
-            from google.colab import files  # type: ignore
-            print("📤 Please upload your Excel file (.xlsx)...")
-            uploaded = files.upload()
-            if not uploaded:
-                raise SystemExit("No file uploaded.")
-            args.input = list(uploaded.keys())[0]
-            print(f"✅ Uploaded: {args.input}")
-        except Exception:
+            from google.colab import files  # فقط این ممکنه ImportError بده
+        except ImportError:
             raise SystemExit(
                 "No --input provided and Colab upload is not available. "
                 "Please run: site-tree --input yourfile.xlsx"
             )
 
+        print("📤 Please upload your Excel file (.xlsx)...")
+        uploaded = files.upload()
+
+        if not uploaded:
+            raise SystemExit("No file uploaded.")
+
+        args.input = list(uploaded.keys())[0]
+        print(f"✅ Uploaded: {args.input}")
+
     generate_pdf(args.input, args.output, show=args.show)
 
     # Auto-download in Colab
     try:
-        from google.colab import files  # type: ignore
+        from google.colab import files
         files.download(args.output)
-    except Exception:
+    except ImportError:
         pass
 
     print(f"✅ Done: {args.output}")
