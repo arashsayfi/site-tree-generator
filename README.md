@@ -21,16 +21,15 @@ generate_pdf(excel_path, output)
 
 files.download(output)
 print("✅ Done")
-python```
-
+---
 ## Local / CLI usage
-
-```python
 pip install git+https://github.com/arashsayfi/site-tree-generator.git
 site-tree --input breadcrumbs.xlsx --output site_tree.pdf
 
-Input format
+## Input format
 
 Excel file with columns such as:
+
 LVL 0 | LVL 1 | LVL 2 | LVL 3 | LVL 4
+
 Each row represents one path in the site tree.
