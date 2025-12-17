@@ -8,7 +8,7 @@ Generate a visual site tree (PDF) from an Excel breadcrumb file.
 Paste and run this single cell in a Google Colab notebook:
 
 ```python
-!pip install -q git+https://github.com/arashsayfi/site-tree-generator.git
+!pip install -q git+https://github.com/arashseyfi88/site-tree-generator.git
 
 from google.colab import files
 from sitetree.core import generate_pdf
