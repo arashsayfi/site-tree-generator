@@ -1,4 +1,4 @@
-```md
+
 # site-tree-generator
 
 Generate a visual site tree (PDF) from an Excel breadcrumb file.
