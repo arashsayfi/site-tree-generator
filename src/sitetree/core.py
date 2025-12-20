@@ -1,10 +1,19 @@
 from __future__ import annotations
 
 import pandas as pd
+import arabic_reshaper
+from bidi.algorithm import get_display
 from anytree import Node
 from matplotlib import pyplot as plt
 from matplotlib import font_manager as fm
 from matplotlib.patches import FancyBboxPatch
+
+def shape_text(text: str) -> str:
+    # Apply shaping only for Arabic/Persian text
+    if any('\u0600' <= ch <= '\u06FF' for ch in text):
+        reshaped = arabic_reshaper.reshape(text)
+        return get_display(reshaped)
+    return text
 
 
 def assign_vertical_positions_fixed(node, depth=0, pos_dict=None, spacing_y=3):
@@ -265,7 +274,7 @@ def generate_pdf(excel_path: str, output_pdf: str = "site_tree.pdf", show: bool 
             if not text:
                 continue
 
-            label = text
+            label = shape_text(text)
             parent_key = id(previous) if previous is not None else None
             key = (parent_key, label)
 
